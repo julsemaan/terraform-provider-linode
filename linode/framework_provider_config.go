@@ -278,6 +278,7 @@ func (fp *FrameworkProvider) InitProvider(
 	}
 
 	if caPath := os.Getenv("LINODE_CA"); caPath != "" {
+		fmt.Println("CADDDDDIIIIIZZZZZZZZ")
 		client.SetRootCertificate(caPath)
 	}
 

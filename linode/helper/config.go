@@ -111,6 +111,11 @@ func (c *Config) Client(ctx context.Context) (*linodego.Client, error) {
 		client.SetRetryMaxWaitTime(time.Duration(c.MaxRetryDelayMilliseconds) * time.Millisecond)
 	}
 
+	if caPath := os.Getenv("LINODE_CA"); caPath != "" {
+		fmt.Println("CADDDDDIIIIIZZZZZZZZ")
+		client.SetRootCertificate(caPath)
+	}
+
 	tfUserAgent := terraformUserAgent(c.TerraformVersion)
 	userAgent := strings.TrimSpace(fmt.Sprintf("%s terraform-provider-linode/%s",
 		tfUserAgent, version.ProviderVersion))

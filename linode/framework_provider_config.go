@@ -277,6 +277,10 @@ func (fp *FrameworkProvider) InitProvider(
 		tflog.Info(ctx, "Linode config does not exist, skipping..")
 	}
 
+	if caPath := os.Getenv("LINODE_CA"); caPath != "" {
+		client.SetRootCertificate(caPath)
+	}
+
 	// Overrides
 	if accessToken != "" {
 		client.SetToken(accessToken)
